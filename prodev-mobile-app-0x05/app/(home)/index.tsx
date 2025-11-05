@@ -1,5 +1,4 @@
 import PropertyListing from "@/ components/PropertyListing";
-import { styles } from "@/styles/_mainstyle";
 import { Feather } from "@expo/vector-icons";
 import {
   View,
@@ -7,12 +6,31 @@ import {
   TextInput,
   Image,
   ScrollView,
-  Dimensions,
   TouchableHighlight,
 } from "react-native";
 import { FILTERS, SAMPLE_DATA } from "@/constants/data";
+import styles from "@/styles/_homestyle";
+import {
+  Quicksand_300Light,
+  Quicksand_400Regular,
+  Quicksand_500Medium,
+  Quicksand_600SemiBold,
+  Quicksand_700Bold,
+  useFonts,
+} from "@expo-google-fonts/quicksand";
 
 const Home = () => {
+  let [fontsLoaded] = useFonts({
+    Quicksand_300Light,
+    Quicksand_400Regular,
+    Quicksand_500Medium,
+    Quicksand_600SemiBold,
+    Quicksand_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
     <View style={styles.container}>
       <View style={styles.searchGroup}>
@@ -22,6 +40,7 @@ const Home = () => {
             <TextInput
               style={{ ...styles.searchControl, ...styles.searchFormText }}
               placeholder="Location . Date . Add guest"
+              placeholderTextColor={"#BEBEBE"}
             />
           </View>
           <View style={styles.searchButton}>
@@ -32,7 +51,7 @@ const Home = () => {
 
       <View
         style={{
-          height: 72,
+          height: 80,
           backgroundColor: "white",
         }}
       >
@@ -41,13 +60,12 @@ const Home = () => {
             {FILTERS.map((filter, index) => (
               <View style={styles.filterContainer} key={index}>
                 <Image
-                  style={{
-                    flex: 1,
-                  }}
                   source={require("@/assets/images/mansion.png")}
+                  width={28}
+                  height={28}
                   resizeMode="contain"
                 />
-                <Text>{filter}</Text>
+                <Text style={styles.filterText}>{filter}</Text>
               </View>
             ))}
           </View>
