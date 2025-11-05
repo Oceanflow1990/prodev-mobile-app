@@ -13,6 +13,6 @@
     "expo-env.d.ts",
     " components/PropertyListing.tsx",
     "components/PropertyListing.tsxtsx",
-    "components/PropertyListing.tsx"
+    "components/PropertyListing"
   ]
 }
