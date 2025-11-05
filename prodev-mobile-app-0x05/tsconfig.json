@@ -12,6 +12,7 @@
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     " components/PropertyListing.tsx",
-    "components/PropertyListing"
+    "components/PropertyListing.tsxtsx",
+    "components/PropertyListing.tsx"
   ]
 }

@@ -1,67 +1,87 @@
+import PropertyListing from "@/components/PropertyListing";
+import { FILTERS, SAMPLE_DATA } from "@/constants/data";
+import styles from "@/styles/_homestyle";
 import {
-  Text,
-  View,
+  Quicksand_300Light,
+  Quicksand_400Regular,
+  Quicksand_500Medium,
+  Quicksand_600SemiBold,
+  Quicksand_700Bold,
+  useFonts,
+} from "@expo-google-fonts/quicksand";
+import { Feather } from "@expo/vector-icons";
+import {
   Image,
-  ImageBackground,
-  TouchableOpacity,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableHighlight,
+  View,
 } from "react-native";
-import { styles } from "@/styles/_mainstyle";
-import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
-import {
-  BACKGROUNDIMAGE,
-  HEROLOGO,
-  HEROLOGOGREEN,
-  GOOGLELOGO,
-  FACEBOOKLOGO,
-} from "@/constants";
 
-export default function Index() {
+const Home = () => {
+  let [fontsLoaded] = useFonts({
+    Quicksand_300Light,
+    Quicksand_400Regular,
+    Quicksand_500Medium,
+    Quicksand_600SemiBold,
+    Quicksand_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1 }}>
-        <ImageBackground
-          source={BACKGROUNDIMAGE}
-          style={styles.backgroundImageContainer}
-          resizeMode="cover"
-        >
-          <View style={styles.container}>
-            <View style={styles.logoContainer}>
-              <Image source={HEROLOGO} />
-            </View>
-
-            <View style={styles.titleContainer}>
-              <Text style={styles.titleText}>
-                Find your favorite place here
-              </Text>
-              <View style={styles.titleSubTextContainer}>
-                <Text style={styles.titleSubText}>
-                  The best prices for over 2{" "}
-                </Text>
-                <Text style={styles.titleSubText}>
-                  million properties worldwide
-                </Text>
-              </View>
-            </View>
-
-            <View style={{ position: "absolute", bottom: 0, width: "100%" }}>
-              <View style={styles.buttonGroup}>
-                <TouchableOpacity style={styles.buttonPrimary}>
-                  <Text style={styles.buttonPrimaryText}>Join here</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.buttonSecondary}>
-                  <Text style={styles.buttonSecondaryText}>Sign In</Text>
-                </TouchableOpacity>
-              </View>
-              <View style={{ ...styles.buttonGroupSubText, paddingBottom: 40 }}>
-                <Text style={{ color: "white" }}>
-                  Continue to home &gt;&gt;
-                </Text>
-              </View>
-            </View>
+    <View style={styles.container}>
+      <View style={styles.searchGroup}>
+        <View style={styles.searchFormGroup}>
+          <View style={styles.searchControlGroup}>
+            <Text style={styles.searchFormText}>Where to?</Text>
+            <TextInput
+              style={{ ...styles.searchControl, ...styles.searchFormText }}
+              placeholder="Location . Date . Add guest"
+              placeholderTextColor={"#BEBEBE"}
+            />
           </View>
-        </ImageBackground>
-      </SafeAreaView>
-    </SafeAreaProvider>
+          <View style={styles.searchButton}>
+            <Feather name="search" size={24} color="white" />
+          </View>
+        </View>
+      </View>
+
+      <View
+        style={{
+          height: 80,
+          backgroundColor: "white",
+        }}
+      >
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <View style={styles.filterGroup}>
+            {FILTERS.map((filter, index) => (
+              <View style={styles.filterContainer} key={index}>
+                <Image
+                  source={require("@/assets/images/mansion.png")}
+                  width={28}
+                  height={28}
+                  resizeMode="contain"
+                />
+                <Text style={styles.filterText}>{filter}</Text>
+              </View>
+            ))}
+          </View>
+        </ScrollView>
+      </View>
+
+      <ScrollView style={styles.listingContainer}>
+        <PropertyListing listings={SAMPLE_DATA} />
+        <View style={styles.paginationContainer}>
+          <TouchableHighlight style={styles.showMoreButton}>
+            <Text style={styles.showMoreButtonText}>Show more</Text>
+          </TouchableHighlight>
+        </View>
+      </ScrollView>
+    </View>
   );
-}
+};
+
+export default Home;

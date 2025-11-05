@@ -13,13 +13,6 @@ const HomeRootLayout = () => {
       screenOptions={{
         tabBarActiveTintColor: "#34967C",
         headerShown: false,
-        tabBarLabelPosition: "below-icon",
-        tabBarStyle: {
-          height: 88,
-          justifyContent: "center",
-          paddingTop: 16,
-        },
-        tabBarLabelStyle: { fontSize: 12, marginTop: 2 },
       }}
     >
       <Tabs.Screen

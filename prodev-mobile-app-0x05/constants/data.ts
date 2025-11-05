@@ -136,4 +136,4 @@ const FILTERS: string[] = [
   "Pet-Friendly",
   "Secluded",
 ];
-export { SAMPLE_DATA, FILTERS };
+export { FILTERS, SAMPLE_DATA };

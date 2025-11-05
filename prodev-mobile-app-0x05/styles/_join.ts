@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
   signupTitleText: {
     fontSize: 18,
     fontWeight: 400,
+    color: "#b5b5b5",
   },
   signupSubTitleText: {
     fontSize: 18,
